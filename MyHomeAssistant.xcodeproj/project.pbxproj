@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8203E2F429C3B38A00790BB7 /* MyHomeAssistantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E2F329C3B38A00790BB7 /* MyHomeAssistantApp.swift */; };
+		8203E2F829C3B38B00790BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8203E2F729C3B38B00790BB7 /* Assets.xcassets */; };
+		8203E2FC29C3B38B00790BB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8203E2FB29C3B38B00790BB7 /* Preview Assets.xcassets */; };
+		8203E31129C3B67500790BB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31029C3B67500790BB7 /* SettingsView.swift */; };
+		8203E31329C3B68B00790BB7 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31229C3B68B00790BB7 /* MessagesView.swift */; };
+		8203E31629C3B6C300790BB7 /* MQTTAppStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31529C3B6C300790BB7 /* MQTTAppStates.swift */; };
+		8203E31829C3B6DA00790BB7 /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31729C3B6DA00790BB7 /* BaseButtonStyle.swift */; };
+		8203E31A29C3B6EE00790BB7 /* MQTTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31929C3B6EE00790BB7 /* MQTTManager.swift */; };
+		8203E31C29C3B70400790BB7 /* ConnectionStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31B29C3B70400790BB7 /* ConnectionStatusBar.swift */; };
+		8203E31E29C3B71200790BB7 /* MQTTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31D29C3B71200790BB7 /* MQTTTextField.swift */; };
+		8203E32029C3B72300790BB7 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8203E31F29C3B72300790BB7 /* TextView.swift */; };
+		82FE3F3929C3F7F700E311F2 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FE3F3829C3F7F700E311F2 /* APIManager.swift */; };
+		CB72EEEA9EF26A7755F16032 /* Pods_MyHomeAssistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E7EEFD6DFC09FBF8EB3334 /* Pods_MyHomeAssistant.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		44E7EEFD6DFC09FBF8EB3334 /* Pods_MyHomeAssistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyHomeAssistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5283AC3800B4889A7F74AE30 /* Pods-MyHomeAssistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHomeAssistant.debug.xcconfig"; path = "Target Support Files/Pods-MyHomeAssistant/Pods-MyHomeAssistant.debug.xcconfig"; sourceTree = "<group>"; };
+		6A8900B8F12BDEB6782451CC /* Pods-MyHomeAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHomeAssistant.release.xcconfig"; path = "Target Support Files/Pods-MyHomeAssistant/Pods-MyHomeAssistant.release.xcconfig"; sourceTree = "<group>"; };
+		8203E2F029C3B38A00790BB7 /* MyHomeAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHomeAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8203E2F329C3B38A00790BB7 /* MyHomeAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeAssistantApp.swift; sourceTree = "<group>"; };
+		8203E2F729C3B38B00790BB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8203E2FB29C3B38B00790BB7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8203E31029C3B67500790BB7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		8203E31229C3B68B00790BB7 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		8203E31529C3B6C300790BB7 /* MQTTAppStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTAppStates.swift; sourceTree = "<group>"; };
+		8203E31729C3B6DA00790BB7 /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
+		8203E31929C3B6EE00790BB7 /* MQTTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTManager.swift; sourceTree = "<group>"; };
+		8203E31B29C3B70400790BB7 /* ConnectionStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusBar.swift; sourceTree = "<group>"; };
+		8203E31D29C3B71200790BB7 /* MQTTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTTextField.swift; sourceTree = "<group>"; };
+		8203E31F29C3B72300790BB7 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		824C917729C3BB6A003A6711 /* CocoaMQTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaMQTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82FE3F3829C3F7F700E311F2 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8203E2ED29C3B38A00790BB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB72EEEA9EF26A7755F16032 /* Pods_MyHomeAssistant.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1FDF94DCC3676E076E056875 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				824C917729C3BB6A003A6711 /* CocoaMQTT.framework */,
+				44E7EEFD6DFC09FBF8EB3334 /* Pods_MyHomeAssistant.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8203E2E729C3B38A00790BB7 = {
+			isa = PBXGroup;
+			children = (
+				8203E2F229C3B38A00790BB7 /* MyHomeAssistant */,
+				8203E2F129C3B38A00790BB7 /* Products */,
+				C53E930B4B9BCED73B8CC827 /* Pods */,
+				1FDF94DCC3676E076E056875 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8203E2F129C3B38A00790BB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8203E2F029C3B38A00790BB7 /* MyHomeAssistant.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8203E2F229C3B38A00790BB7 /* MyHomeAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				8203E30829C3B5E100790BB7 /* Core */,
+				8203E2F329C3B38A00790BB7 /* MyHomeAssistantApp.swift */,
+				8203E30929C3B5EF00790BB7 /* Modules */,
+				8203E2F729C3B38B00790BB7 /* Assets.xcassets */,
+				8203E2FA29C3B38B00790BB7 /* Preview Content */,
+			);
+			path = MyHomeAssistant;
+			sourceTree = "<group>";
+		};
+		8203E2FA29C3B38B00790BB7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8203E2FB29C3B38B00790BB7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8203E30829C3B5E100790BB7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8203E30D29C3B63800790BB7 /* Views */,
+				8203E30C29C3B62F00790BB7 /* ViewModels */,
+				8203E30B29C3B61E00790BB7 /* Styles */,
+				8203E30A29C3B60900790BB7 /* Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8203E30929C3B5EF00790BB7 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8203E30F29C3B65700790BB7 /* Settings */,
+				8203E30E29C3B64F00790BB7 /* Messages */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8203E30A29C3B60900790BB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31529C3B6C300790BB7 /* MQTTAppStates.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8203E30B29C3B61E00790BB7 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31729C3B6DA00790BB7 /* BaseButtonStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		8203E30C29C3B62F00790BB7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31929C3B6EE00790BB7 /* MQTTManager.swift */,
+				82FE3F3829C3F7F700E311F2 /* APIManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8203E30D29C3B63800790BB7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31B29C3B70400790BB7 /* ConnectionStatusBar.swift */,
+				8203E31D29C3B71200790BB7 /* MQTTTextField.swift */,
+				8203E31F29C3B72300790BB7 /* TextView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8203E30E29C3B64F00790BB7 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31229C3B68B00790BB7 /* MessagesView.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8203E30F29C3B65700790BB7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8203E31029C3B67500790BB7 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C53E930B4B9BCED73B8CC827 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5283AC3800B4889A7F74AE30 /* Pods-MyHomeAssistant.debug.xcconfig */,
+				6A8900B8F12BDEB6782451CC /* Pods-MyHomeAssistant.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8203E2EF29C3B38A00790BB7 /* MyHomeAssistant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8203E2FF29C3B38B00790BB7 /* Build configuration list for PBXNativeTarget "MyHomeAssistant" */;
+			buildPhases = (
+				A8241A98E01964AA4C8090A4 /* [CP] Check Pods Manifest.lock */,
+				8203E2EC29C3B38A00790BB7 /* Sources */,
+				8203E2ED29C3B38A00790BB7 /* Frameworks */,
+				8203E2EE29C3B38A00790BB7 /* Resources */,
+				54C336FD1206E189C0EB992F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyHomeAssistant;
+			productName = MyHomeAssistant;
+			productReference = 8203E2F029C3B38A00790BB7 /* MyHomeAssistant.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8203E2E829C3B38A00790BB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					8203E2EF29C3B38A00790BB7 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 8203E2EB29C3B38A00790BB7 /* Build configuration list for PBXProject "MyHomeAssistant" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8203E2E729C3B38A00790BB7;
+			productRefGroup = 8203E2F129C3B38A00790BB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8203E2EF29C3B38A00790BB7 /* MyHomeAssistant */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8203E2EE29C3B38A00790BB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8203E2FC29C3B38B00790BB7 /* Preview Assets.xcassets in Resources */,
+				8203E2F829C3B38B00790BB7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54C336FD1206E189C0EB992F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyHomeAssistant/Pods-MyHomeAssistant-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyHomeAssistant/Pods-MyHomeAssistant-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyHomeAssistant/Pods-MyHomeAssistant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8241A98E01964AA4C8090A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyHomeAssistant-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8203E2EC29C3B38A00790BB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8203E2F429C3B38A00790BB7 /* MyHomeAssistantApp.swift in Sources */,
+				8203E31C29C3B70400790BB7 /* ConnectionStatusBar.swift in Sources */,
+				82FE3F3929C3F7F700E311F2 /* APIManager.swift in Sources */,
+				8203E31A29C3B6EE00790BB7 /* MQTTManager.swift in Sources */,
+				8203E31629C3B6C300790BB7 /* MQTTAppStates.swift in Sources */,
+				8203E31829C3B6DA00790BB7 /* BaseButtonStyle.swift in Sources */,
+				8203E31E29C3B71200790BB7 /* MQTTTextField.swift in Sources */,
+				8203E32029C3B72300790BB7 /* TextView.swift in Sources */,
+				8203E31129C3B67500790BB7 /* SettingsView.swift in Sources */,
+				8203E31329C3B68B00790BB7 /* MessagesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8203E2FD29C3B38B00790BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8203E2FE29C3B38B00790BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8203E30029C3B38B00790BB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5283AC3800B4889A7F74AE30 /* Pods-MyHomeAssistant.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyHomeAssistant/MyHomeAssistant.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"MyHomeAssistant/Preview Content\"";
+				DEVELOPMENT_TEAM = DQX6X5B8C9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MyHomeAssistant;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Epee.MyHomeAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8203E30129C3B38B00790BB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A8900B8F12BDEB6782451CC /* Pods-MyHomeAssistant.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyHomeAssistant/MyHomeAssistant.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"MyHomeAssistant/Preview Content\"";
+				DEVELOPMENT_TEAM = DQX6X5B8C9;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MyHomeAssistant;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Epee.MyHomeAssistant;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8203E2EB29C3B38A00790BB7 /* Build configuration list for PBXProject "MyHomeAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8203E2FD29C3B38B00790BB7 /* Debug */,
+				8203E2FE29C3B38B00790BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8203E2FF29C3B38B00790BB7 /* Build configuration list for PBXNativeTarget "MyHomeAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8203E30029C3B38B00790BB7 /* Debug */,
+				8203E30129C3B38B00790BB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8203E2E829C3B38A00790BB7 /* Project object */;
+}
