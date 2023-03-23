@@ -31,12 +31,14 @@ struct SettingsView: View {
         return Button(action: { configureAndConnect() }) {
                 Text("Connect")
             }.buttonStyle(BaseButtonStyle(foreground: .white, background: .blue))
+            .disabled(mqttManager.currentAppState.appConnectionState != .disconnected || brokerAddress.isEmpty)
     }
     
     private func setUpDisconnectButton() -> some View  {
         return Button(action: { disconnect() }) {
             Text("Disconnect")
         }.buttonStyle(BaseButtonStyle(foreground: .white, background: .red))
+        .disabled(mqttManager.currentAppState.appConnectionState == .disconnected)
     }
     private func configureAndConnect() {
         // Initialize the MQTT Manager

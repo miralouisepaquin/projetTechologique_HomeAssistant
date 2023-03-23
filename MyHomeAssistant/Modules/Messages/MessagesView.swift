@@ -39,7 +39,7 @@ struct MessageView: View {
                             .font(.system(size: 14.0))
                     }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
                         .frame(width: 100)
-                        .disabled(!mqttManager.isConnected() || mqttManager.isSubscribed())
+                        .disabled(!mqttManager.isConnected() || topic.isEmpty)
                 }
 
                 HStack {
@@ -48,7 +48,7 @@ struct MessageView: View {
                         Text("Send").font(.body)
                     }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
                         .frame(width: 80)
-                        .disabled(!mqttManager.isSubscribed())
+                        .disabled(!mqttManager.isSubscribed() || message.isEmpty)
                 }
                 MessageHistoryTextView(text: $mqttManager.currentAppState.historyText
                 ).frame(height: 150)
