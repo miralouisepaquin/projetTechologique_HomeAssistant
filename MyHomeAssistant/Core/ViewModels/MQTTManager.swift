@@ -49,7 +49,7 @@ final class MQTTManager: ObservableObject {
         self.password = password
 
         // TODO: Guard
-        mqttClient = CocoaMQTT(clientID: "iOSDevice", host: "172.16.5.100", port: 1883)
+        mqttClient = CocoaMQTT(clientID: identifier, host: host, port: 1883)
         // If a server has username and password, pass it here
         if let finalusername = self.username, let finalpassword = self.password {
             mqttClient?.username = finalusername
@@ -111,15 +111,6 @@ extension MQTTManager: CocoaMQTTDelegate {
     // Optional ssl CocoaMQTTDelegate
     func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
         TRACE("trust: \(trust)")
-        /// Validate the server certificate
-        ///
-        /// Some custom validation...
-        ///
-        /// if validatePassed {
-        ///     completionHandler(true)
-        /// } else {
-        ///     completionHandler(false)
-        /// }
         completionHandler(true)
     }
 
@@ -151,14 +142,13 @@ extension MQTTManager: CocoaMQTTDelegate {
 
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
         TRACE("subscribed: \(success), failed: \(failed)")
-        
-        //if(){
-            //currentAppState.setAppConnectionState(state: .connectedSubscribed)
-        //}
+        currentAppState.setAppConnectionState(state: .connectedSubscribed)
     }
 
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopics topics: [String]) {
         TRACE("topic: \(topics)")
+        currentAppState.setAppConnectionState(state: .connectedUnSubscribed)
+        currentAppState.clearData()
     }
 
     func mqttDidPing(_ mqtt: CocoaMQTT) {
@@ -171,6 +161,7 @@ extension MQTTManager: CocoaMQTTDelegate {
 
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
         TRACE("\(err.description)")
+        currentAppState.setAppConnectionState(state: .disconnected)
     }
 }
 
