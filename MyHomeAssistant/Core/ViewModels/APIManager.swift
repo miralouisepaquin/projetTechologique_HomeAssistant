@@ -6,19 +6,79 @@
 //
 
 import SwiftUI
+import Combine
+import Foundation
 
-// Create Date
-let date = Date()
-
-// Create Date Formatter
-let dateFormatter = DateFormatter()
+public class APIManager: ObservableObject {
+    @Published var brokerAdress: String = ""
+    @Published var identifierName: String = ""
+    @Published var userValideState: Bool = false
+    
+    func getUsersRequest(usager: String, motDePasse: String) {
+        let usager = usager
+        let motDePasse = motDePasse
+        
+        struct Users: Codable {
+            let mail: String
+            let password: String
+            let code: Int
+            let broker: String
+        }
+        
+        // Prepare URL
+        let urlString = "http://51.222.158.139:3001/api/users/findAllUsers"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+                    
+            guard let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode == 200,
+                    let data = data else {
+                print("Invalid response")
+                return
+            }
+                    
+            do {
+                let people = try JSONDecoder().decode([Users].self, from: data)
+                // Access the single Person object in the array
+                people.forEach { user in
+                    //print("Mail: \(user.mail) , Password: \(user.password) , Code: \(user.code)")
+                    if(usager == user.mail && motDePasse == String(user.password)){
+                        self.brokerAdress = user.broker
+                        self.identifierName = user.mail
+                        self.userValideState = true
+                        
+                        print("connexion user réussi")
+                    }
+                }
+                if(self.userValideState != true){
+                    print("Usager ou mot de passe non valide.")
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }
+        task.resume()
+    }
+}
 
 //GET, POST, PUT, DELETE, etc...
 func postLogsRequest(text: String) {
+    // Create Date
+    let date = Date()
+    // Create Date Formatter
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
     
     // Prepare URL
-    let url = URL(string: "http://51.222.158.139:3001/api/logs")
+    let url = URL(string: "http://51.222.158.139:3001/api/logs/createLog")
     guard let requestUrl = url else {
         print("Invalid URL")
         return }
@@ -52,46 +112,4 @@ func postLogsRequest(text: String) {
         let date: String
         let description: String
     }
-}
-
-func getUsersRequest() {
-    
-    struct Users: Codable {
-        let mail: String
-        let password: String
-        let code: Int
-    }
-    
-    // Prepare URL
-    let urlString = "http://51.222.158.139:3001/api/users"
-    guard let url = URL(string: urlString) else {
-        print("Invalid URL")
-        return
-    }
-    
-    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error = error {
-            print("Error: \(error)")
-            return
-        }
-                
-        guard let httpResponse = response as? HTTPURLResponse,
-                httpResponse.statusCode == 200,
-                let data = data else {
-            print("Invalid response")
-            return
-        }
-                
-        do {
-            let people = try JSONDecoder().decode([Users].self, from: data)
-
-            // Access the single Person object in the array
-            let user = people[0]
-            print(user)
-            print("Mail: \(user.mail) , Password: \(user.password) , Code: \(user.code)")
-        } catch {
-            print("Error decoding JSON: \(error)")
-        }
-    }
-    task.resume()
 }
