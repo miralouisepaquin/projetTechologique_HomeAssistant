@@ -8,67 +8,63 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var userName: String = ""
-    @State var password: String = ""
-    @State var alerte: String = ""
-    @State var isHiddenState: Bool = true
-    @EnvironmentObject private var mqttManager: MQTTManager
-    @EnvironmentObject private var userConnexionStatus: APIManager
+    
+    @State var userName = ""
+    @State var password = ""
+    @State var alerte = ""
+    @State var isHidden = true
+    @EnvironmentObject var apiManager: APIManager
+    
     var body: some View {
         VStack {
-            MQTTTextField(placeHolderMessage: "Enter user name", isDisabled: mqttManager.currentAppState.appConnectionState != .disconnected, message: $userName)
-                .padding(EdgeInsets(top: 0.0, leading: 7.0, bottom: 0.0, trailing: 7.0))
-            MQTTTextField(placeHolderMessage: "Enter password", isDisabled: mqttManager.currentAppState.appConnectionState != .disconnected, message: $password)
-                .padding(EdgeInsets(top: 0.0, leading: 7.0, bottom: 0.0, trailing: 7.0))
+            Label("My School Assistant", systemImage: "")
+                .font(.largeTitle)
+            Spacer()
+        }
+        VStack {
+            if(isHidden != true){
+                Label(alerte, systemImage: "")
+            }
+            TextField("Enter user name", text: $userName)
+                .padding(EdgeInsets(top: 0.0, leading: 50, bottom: 0.0, trailing: 50))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Enter password", text: $password)
+                .padding(EdgeInsets(top: 0.0, leading: 50, bottom: 0.0, trailing: 50))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
             HStack(spacing: 50) {
                 setUpConnectButton()
-                setUpDisconnectButton()
             }
             .padding()
             Spacer()
         }
-        .navigationTitle("Settings")
+        .padding(.bottom, 300)
+        .navigationTitle("LogIn")
         .navigationBarTitleDisplayMode(.inline)
     }
 
     // Configure / enable /disable connect button
     private func setUpConnectButton() -> some View  {
-        return Button(action: { validateUser() }) {
-                Text("Connect")
+        return Button(action: { getUsers() }) {
+                Text("LogIn")
             }.buttonStyle(BaseButtonStyle(foreground: .white, background: .blue))
-            .disabled(mqttManager.currentAppState.appConnectionState != .disconnected || userName.isEmpty || password.isEmpty)
     }
     
-    private func setUpDisconnectButton() -> some View  {
-        return Button(action: { disconnect() }) {
-            Text("Disconnect")
-        }.buttonStyle(BaseButtonStyle(foreground: .white, background: .red))
-        .disabled(mqttManager.currentAppState.appConnectionState == .disconnected)
-    }
-    private func validateUser() {
-        userConnexionStatus.getUsersRequest(usager: userName, motDePasse: password)
-        configureAndConnect()
+    private func getUsers(){
+        apiManager.getUsersRequest(usager: userName, motDePasse: password)
+        validateUser()
     }
     
-    private func configureAndConnect() {
-        // Initialize the MQTT Manager
-        if(userConnexionStatus.userValideState == true){
-            mqttManager.initializeMQTT(host: userConnexionStatus.brokerAdress, identifier: UUID().uuidString)
-            // Connect
-            mqttManager.connect()
-            isHiddenState = true
+    private func validateUser() {        
+        if(apiManager.currentAPIstate.userValideState == true){
+            showAlert(text: "True")
         }else{
-            showAlert()
+            showAlert(text: "False")
         }
     }
-
-    private func disconnect() {
-        mqttManager.disconnect()
-    }
     
-    func showAlert() {
-        isHiddenState = false
-        alerte = "Invalid user or password"
+    private func showAlert(text: String) {
+        alerte = text
+        isHidden = false
     }
 }
 
