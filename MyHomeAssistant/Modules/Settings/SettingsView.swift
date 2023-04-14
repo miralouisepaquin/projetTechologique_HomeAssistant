@@ -4,7 +4,6 @@
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -31,7 +30,7 @@ struct SettingsView: View {
         return Button(action: { configureAndConnect() }) {
                 Text("Connect")
             }.buttonStyle(BaseButtonStyle(foreground: .white, background: .blue))
-            .disabled(mqttManager.currentAppState.appConnectionState != .disconnected || brokerAddress.isEmpty)
+        .disabled(mqttManager.currentAppState.appConnectionState != .disconnected || brokerAddress.isEmpty)
     }
     
     private func setUpDisconnectButton() -> some View  {

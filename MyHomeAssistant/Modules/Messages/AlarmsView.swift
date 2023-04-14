@@ -1,30 +1,23 @@
-//
-//  MessagesView.swift
-//  MyHomeAssistant
-//
-//  Created by Mira-Louise Paquin on 2023-03-16.
-//
-
 import SwiftUI
 
-struct MessagesView: View {
+struct AlarmsView: View {
     // TODO: Remove singleton
     @StateObject var mqttManager = MQTTManager.shared()
     var body: some View {
         NavigationView {
-            MessageView()
+            AlarmView()
         }
         .environmentObject(mqttManager)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct AlarmsView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagesView()
+        AlarmsView()
     }
 }
 
-struct MessageView: View {
+struct AlarmView: View {
     @State var topic: String = ""
     @State var message: String = ""
     @EnvironmentObject private var mqttManager: MQTTManager
@@ -56,12 +49,13 @@ struct MessageView: View {
 
             Spacer()
         }
-        .navigationTitle("Messages")
+        .navigationTitle("Alarm")
         .navigationBarItems(trailing: NavigationLink(
             destination: SettingsView(brokerAddress: mqttManager.currentHost() ?? ""),
             label: {
                 Image(systemName: "gear")
             }))
+        .navigationBarBackButtonHidden(true)
     }
 
     private func subscribe(topic: String) {
@@ -96,4 +90,3 @@ struct MessageView: View {
         }
     }
 }
-
