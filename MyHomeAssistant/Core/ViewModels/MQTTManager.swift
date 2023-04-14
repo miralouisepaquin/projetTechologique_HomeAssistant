@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import CocoaMQTT
 import Combine
 
@@ -21,7 +20,7 @@ final class MQTTManager: ObservableObject {
     @Published var currentAppState = MQTTAppState()
     private var anyCancellable: AnyCancellable?
     // Private Init
-    private init() {
+    public init() {
         // Workaround to support nested Observables, without this code changes to state is not propagated
         anyCancellable = currentAppState.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
