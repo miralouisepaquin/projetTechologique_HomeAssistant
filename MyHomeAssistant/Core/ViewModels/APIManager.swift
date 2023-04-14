@@ -5,14 +5,11 @@
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
 
-import SwiftUI
 import Combine
 import Foundation
 
-public class APIManager: ObservableObject {
-    @Published var brokerAdress: String = ""
-    @Published var identifierName: String = ""
-    @Published var userValideState: Bool = false
+class APIManager: ObservableObject {
+    @Published var currentAPIstate = APIAppState()
     
     func getUsersRequest(usager: String, motDePasse: String) {
         let usager = usager
@@ -32,7 +29,7 @@ public class APIManager: ObservableObject {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
             if let error = error {
                 print("Error: \(error)")
                 return
@@ -51,15 +48,16 @@ public class APIManager: ObservableObject {
                 people.forEach { user in
                     //print("Mail: \(user.mail) , Password: \(user.password) , Code: \(user.code)")
                     if(usager == user.mail && motDePasse == String(user.password)){
-                        self.brokerAdress = user.broker
-                        self.identifierName = user.mail
-                        self.userValideState = true
+                        currentAPIstate.setBrokerAdress(address: user.broker)
+                        currentAPIstate.setIdentifierName(name: user.mail)
+                        currentAPIstate.setUserValideState(state: true)
                         
                         print("connexion user réussi")
                     }
                 }
-                if(self.userValideState != true){
+                if(currentAPIstate.userValideState != true){
                     print("Usager ou mot de passe non valide.")
+                    currentAPIstate.setUserValideState(state: false)
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
