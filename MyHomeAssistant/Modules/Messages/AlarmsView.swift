@@ -21,6 +21,7 @@ struct AlarmView: View {
     @State var topic: String = ""
     @State var message: String = ""
     @EnvironmentObject private var mqttManager: MQTTManager
+    @StateObject private var apiManager = APIManager()
     var body: some View {
         VStack {
             ConnectionStatusBar(message: mqttManager.connectionStateMessage(), isConnected: mqttManager.isConnected())
@@ -33,18 +34,12 @@ struct AlarmView: View {
                     }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
                         .frame(width: 100)
                         .disabled(!mqttManager.isConnected() || topic.isEmpty)
+                }.padding(.bottom, 30)
+                VStack {
+                    ForEach(apiManager.currentSensorState.listItems, id:\.self){ sensor in
+                        AlarmContainer(sensor: sensor, isDetected: mqttManager.currentSensorState.sensorConnectionState.isDetected && sensor == mqttManager.currentSensorState.sensorName)
+                    }
                 }
-
-                HStack {
-                    MQTTTextField(placeHolderMessage: "Enter a message", isDisabled: !mqttManager.isSubscribed(), message: $message)
-                    Button(action: { send(message: message) }) {
-                        Text("Send").font(.body)
-                    }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
-                        .frame(width: 80)
-                        .disabled(!mqttManager.isSubscribed() || message.isEmpty)
-                }
-                MessageHistoryTextView(text: $mqttManager.currentAppState.historyText
-                ).frame(height: 150)
             }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
 
             Spacer()
@@ -56,6 +51,10 @@ struct AlarmView: View {
                 Image(systemName: "gear")
             }))
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            apiManager.currentSensorState.clearSensorList()
+            apiManager.getSensorsRequest()
+        }
     }
 
     private func subscribe(topic: String) {
@@ -65,13 +64,7 @@ struct AlarmView: View {
     private func usubscribe() {
         mqttManager.unSubscribeFromCurrentTopic()
     }
-
-    private func send(message: String) {
-        let finalMessage = "SwiftUIIOS says: \(message)"
-        mqttManager.publish(with: finalMessage)
-        self.message = ""
-    }
-
+    
     private func titleForSubscribButtonFrom(state: MQTTAppConnectionState) -> String {
         switch state {
         case .connected, .connectedUnSubscribed, .disconnected, .connecting:

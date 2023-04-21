@@ -12,51 +12,70 @@ struct LoginView: View {
     @State var password = ""
     @State var isAuthenticated: Bool = false
     @State var isHidden: Bool = true
-    @State private var showMainView = false
+    @State var isDisabled: Bool = false
+    @State var buttonColor: String = "teal"
     @EnvironmentObject var apiManager: APIManager
-    @StateObject var mqttManager = MQTTManager.shared()
     
     @State private var path = NavigationPath()
     
     var body: some View {
         NavigationStack(path: $path) {
-            VStack {
-                Text("My School Assistant")
-                    .font(.largeTitle)
-                Spacer()
-            }
-            VStack {
-                if(isHidden == false){
-                    Text("Email ou mot de passe invalide!")
-                }
-                TextField("Enter user name", text: $userName)
-                    .padding(EdgeInsets(top: 0.0, leading: 50, bottom: 0.0, trailing: 50))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Enter password", text: $password)
-                    .padding(EdgeInsets(top: 0.0, leading: 50, bottom: 0.0, trailing: 50))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                HStack(spacing: 50) {
+            ZStack {
+                Color.teal
+                    .ignoresSafeArea()
+                Circle()
+                    .scale(1.7)
+                    .foregroundColor(.white.opacity(0.15))
+                Circle()
+                    .scale(1.35)
+                    .foregroundColor(.white)
+
+                VStack {
+                    Spacer()
+                    Text("My School Assistant")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                    
+                    if(isHidden == false){
+                        Text("Email ou mot de passe invalide!")
+                    }
+                    
+                    TextField("Enter user name", text: $userName)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
                     Button("LogIn" ,action: {
                         getUsers()
                     })
+                    .disabled(isDisabled)
                     .navigationDestination(isPresented: $isAuthenticated) {
-                            AlarmView()
+                        AlarmView()
                     }
+                    .foregroundColor(.white)
+                    .frame(width: 300, height: 50)
+                    .background(Color.teal)
+                    .cornerRadius(10)
                 }
-                .padding()
-                .background(Color(red: 0, green: 0, blue: 0.5))
-                .foregroundColor(.white)
-                .clipShape(Capsule())
-                .padding()
+                .padding(.bottom, 300)
+                .navigationTitle("LogIn")
+                .navigationBarTitleDisplayMode(.inline)
                 Spacer()
             }
-            .padding(.bottom, 300)
-            .navigationTitle("LogIn")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
     
     private func getUsers(){
+        isDisabled = true
         apiManager.getUsersRequest(usager: userName, motDePasse: password)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
             validateUser()
@@ -69,6 +88,7 @@ struct LoginView: View {
         }
         else{
             isHidden = false
+            isDisabled = false
         }
     }
 }

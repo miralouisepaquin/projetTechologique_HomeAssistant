@@ -18,11 +18,17 @@ final class MQTTManager: ObservableObject {
     private var password: String!
 
     @Published var currentAppState = MQTTAppState()
+    @Published var currentAPIState = APIAppState()
+    @Published var currentSensorState = SensorAppState()
     private var anyCancellable: AnyCancellable?
+    private var anyCancellable2: AnyCancellable?
     // Private Init
     public init() {
         // Workaround to support nested Observables, without this code changes to state is not propagated
         anyCancellable = currentAppState.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+        anyCancellable2 = currentSensorState.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
         }
     }
@@ -132,11 +138,10 @@ extension MQTTManager: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
         TRACE("id: \(id)")
     }
-
+    
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         TRACE("message: \(message.string.description), id: \(id)")
-        currentAppState.setReceivedMessage(text: message.string.description)
-        //postLogsRequest(text: "\(message.string.description)")
+        filtreMessage(message: message.string.description)
     }
 
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
@@ -180,7 +185,110 @@ extension MQTTManager {
 
         print("[TRACE] [\(prettyName)]: \(message)")
     }
+    
+    func filtreMessage(message: String){
+        var publishedOnce = false
+        var messagefiltre1 = ""
+        var messagefiltrer = ""
+        if(message.first == "{"){
+            messagefiltre1  = String(message.dropFirst())
+        }
+        if(message.last == "}"){
+            messagefiltrer = String(messagefiltre1.dropLast())
+        }
+        
+        let objects = messagefiltrer.components(separatedBy: ",")
+        
+        objects.forEach { object in
+            let invalidCharacters = CharacterSet(charactersIn: "\"")
+            let attributs = object.components(separatedBy: ":")
+            
+            var sujet: String
+            var valeur: String
+            if attributs.count == 1 {
+                sujet = ""
+                valeur = attributs[0]
+                if( valeur.first.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                    valeur  = String(valeur.dropFirst())
+                }
+                if(valeur.last.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                    valeur = String(valeur.dropLast())
+                }
+            }else{
+                if(attributs.count == 2){
+                    sujet = attributs[0]
+                    if( sujet.first.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        sujet  = String(sujet.dropFirst())
+                    }
+                    if(sujet.last.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        sujet = String(sujet.dropLast())
+                    }
+                    valeur = attributs[1]
+                    if( valeur.first.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        valeur  = String(valeur.dropFirst())
+                    }
+                    if(valeur.last.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        valeur = String(valeur.dropLast())
+                    }
+                }else {
+                    sujet = attributs[0]
+                    if( sujet.first.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        sujet  = String(sujet.dropFirst())
+                    }
+                    if(sujet.last.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        sujet = String(sujet.dropLast())
+                    }
+                    valeur = attributs[1]+attributs[2]
+                    if( valeur.first.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        valeur  = String(valeur.dropFirst())
+                    }
+                    if(valeur.last.description.rangeOfCharacter(from: invalidCharacters) != nil){
+                        valeur = String(valeur.dropLast())
+                    }
+                }
+                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/door/contact'") && message.contains("true")){
+                    currentAppState.setReceivedMessage(text: message)
+                    currentSensorState.setsensorName(name: "mira/door")
+                    currentSensorState.setSensorConnectionState(state: .detected)
+                    postLogsRequest(text: message)
+                    if(publishedOnce != true){
+                        mqttClient?.publish("zigbee2mqtt", withString: "askCode01", qos: .qos1)
+                        publishedOnce = true
+                    }
+                }
+                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/motion/occupancy'") && message.contains("true")){
+                    currentAppState.setReceivedMessage(text: message)
+                    currentSensorState.setsensorName(name: "mira/motion")
+                    currentSensorState.setSensorConnectionState(state: .detected)
+                    postLogsRequest(text: message)
+                    if(publishedOnce != true){
+                        mqttClient?.publish("zigbee2mqtt", withString: "askCode01", qos: .qos1)
+                        publishedOnce = true
+                    }
+                }
+                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/button/action'") && message.contains("single")){
+                    currentAppState.setReceivedMessage(text: message)
+                    currentSensorState.setsensorName(name: "mira/button")
+                    currentSensorState.setSensorConnectionState(state: .detected)
+                    postLogsRequest(text: message)
+                    if(publishedOnce != true){
+                        mqttClient?.publish("zigbee2mqtt", withString: "askCode01", qos: .qos1)
+                        publishedOnce = true
+                    }
+                }
+                if(message.contains("zigbee2mqtt/code01") && message.contains(String(currentAPIState.userCode))){
+                    currentSensorState.setSensorConnectionState(state: .undetected)
+                    postLogsRequest(text: message)
+                    if(publishedOnce == true){
+                        publishedOnce = false
+                    }
+                }
+            }
+        }
+    }
+    
 }
+
 
 extension Optional {
     // Unwrap optional value for printing log only
