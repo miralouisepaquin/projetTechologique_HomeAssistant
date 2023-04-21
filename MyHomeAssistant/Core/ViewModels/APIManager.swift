@@ -8,8 +8,9 @@
 import Combine
 import Foundation
 
-class APIManager: ObservableObject {
+final class APIManager: ObservableObject {
     @Published var currentAPIstate = APIAppState()
+    @Published var currentSensorState = SensorAppState()
     
     func getUsersRequest(usager: String, motDePasse: String) {
         let usager = usager
@@ -46,17 +47,14 @@ class APIManager: ObservableObject {
                 let people = try JSONDecoder().decode([Users].self, from: data)
                 // Access the single Person object in the array
                 people.forEach { user in
-                    //print("Mail: \(user.mail) , Password: \(user.password) , Code: \(user.code)")
                     if(usager == user.mail && motDePasse == String(user.password)){
                         currentAPIstate.setBrokerAdress(address: user.broker)
                         currentAPIstate.setIdentifierName(name: user.mail)
+                        currentAPIstate.setUserCode(code: user.code)
                         currentAPIstate.setUserValideState(state: true)
-                        
-                        print("connexion user réussi")
                     }
                 }
                 if(currentAPIstate.userValideState != true){
-                    print("Usager ou mot de passe non valide.")
                     currentAPIstate.setUserValideState(state: false)
                 }
             } catch {
@@ -65,7 +63,48 @@ class APIManager: ObservableObject {
         }
         task.resume()
     }
+    
+    func getSensorsRequest() {
+        
+        struct Sensors: Codable {
+            let name: String
+            let friendlyName: String
+            let room: String
+        }
+        
+        // Prepare URL
+        let urlString = "http://51.222.158.139:3001/api/sensors/findAllSensors"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+                    
+            guard let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode == 200,
+                    let data = data else {
+                print("Invalid response")
+                return
+            }
+                    
+            do {
+                let sensors = try JSONDecoder().decode([Sensors].self, from: data)
+                sensors.forEach { sensor in
+                    currentSensorState.setsensorList(items: [sensor.friendlyName])
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }
+        task.resume()
+    }
 }
+
 
 //GET, POST, PUT, DELETE, etc...
 func postLogsRequest(text: String) {
