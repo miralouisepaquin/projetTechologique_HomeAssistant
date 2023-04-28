@@ -38,17 +38,18 @@ struct LoginView: View {
                         .padding()
                     
                     if(isHidden == false){
-                        Text("Email ou mot de passe invalide!")
+                        Text("Wrong email and/or password!")
+                            .foregroundColor(.red)
                     }
                     
-                    TextField("Enter user name", text: $userName)
+                    TextField("Enter Email", text: $userName)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                     
                     
-                    SecureField("Password", text: $password)
+                    SecureField("Enter Password", text: $password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
@@ -65,11 +66,9 @@ struct LoginView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.teal)
                     .cornerRadius(10)
+                    Spacer()
                 }
-                .padding(.bottom, 300)
-                .navigationTitle("LogIn")
-                .navigationBarTitleDisplayMode(.inline)
-                Spacer()
+                .navigationTitle("")
             }
         }
     }
@@ -83,7 +82,7 @@ struct LoginView: View {
     }
     
     private func validateUser() {        
-        if(apiManager.currentAPIstate.userValideState == true){
+        if(apiManager.currentAPIState.userValideState == true){
             isAuthenticated = true
         }
         else{
