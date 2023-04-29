@@ -23,13 +23,15 @@ Afin de pouvoir utiliser l'application et la lancé, il faudra d'abord installer
 $ sudo gem install cocoapods
 ```
 Dans le dossier du projet, il faudra trouver le fichier pods et le modifier comme suit:
-platform :ios, '12.0'
-use_frameworks!
+```
+  platform :ios, '12.0'
+  use_frameworks!
 
-target 'MyApp' do
-  pod 'CocoaMQTT'
-end
+  target 'MyApp' do
+    pod 'CocoaMQTT'
+  end
 ```
 Puis il sera possible d'installer les dépendence en éxécutant le fichier:
+```
 $ pod install
 ```
