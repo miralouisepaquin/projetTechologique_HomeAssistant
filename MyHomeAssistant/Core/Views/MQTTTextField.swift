@@ -1,6 +1,6 @@
 //
 //  MQTTTextField.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
