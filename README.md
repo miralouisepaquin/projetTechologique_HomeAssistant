@@ -1,6 +1,8 @@
 # projetTechologique_SchoolAssistant
 application en swift 5 avec Xcode 14 qui va simuler un système de gestion d'alarme de maison.
 
+V.4.1 Ajout de la fonctionnalité permettant la gestion des langues Anglais/Français.
+
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Technologies](#technologies)
