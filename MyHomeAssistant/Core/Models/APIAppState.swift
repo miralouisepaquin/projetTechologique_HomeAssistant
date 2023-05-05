@@ -2,20 +2,16 @@
 //  APIAppState.swift
 //  MySchoolAssistant
 //
-//  Created by EdwImac03 on 2023-04-06.
+//  Created by Mira Paquin on 2023-04-06.
 //
 import Combine
 import Foundation
 
 class APIAppState: ObservableObject {
-    @Published var brokerAdress: String = ""
     @Published var identifierName: String = ""
     @Published var userCode: Int = 0
     @Published var userValideState: Bool = false
     
-    func setBrokerAdress(address: String) {
-        brokerAdress = address
-    }
     
     func setUserCode(code: Int) {
         userCode = code

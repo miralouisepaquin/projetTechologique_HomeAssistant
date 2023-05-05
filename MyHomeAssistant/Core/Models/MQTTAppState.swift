@@ -1,12 +1,13 @@
 //
 //  MQTTAppStates.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
 
 import Combine
 import Foundation
+let langStr = Locale.preferredLanguages[0]
 
 enum MQTTAppConnectionState {
     case connected
@@ -16,18 +17,37 @@ enum MQTTAppConnectionState {
     case connectedUnSubscribed
 
     var description: String {
-        switch self {
-        case .connected:
-            return "Connected"
-        case .disconnected:
-            return "Disconnected"
-        case .connecting:
-            return "Connecting"
-        case .connectedSubscribed:
-            return "Subscribed"
-        case .connectedUnSubscribed:
-            return "Connected Unsubscribed"
+        if langStr == "en" {
+            switch self {
+            case .connected:
+                return "Connected"
+            case .disconnected:
+                return "Disconnected"
+            case .connecting:
+                return "Connecting"
+            case .connectedSubscribed:
+                return "Subscribed"
+            case .connectedUnSubscribed:
+                return "Connected Unsubscribed"
+            }
+            
+        } else {
+            switch self {
+            case .connected:
+                return "Connecté"
+            case .disconnected:
+                return "Déconnecté"
+            case .connecting:
+                return "En Connexion"
+            case .connectedSubscribed:
+                return "Inscrit"
+            case .connectedUnSubscribed:
+                return "Connecter Non Inscrit"
+            }
         }
+        
+        
+        
     }
     var isConnected: Bool {
         switch self {
@@ -50,18 +70,6 @@ enum MQTTAppConnectionState {
 
 final class MQTTAppState: ObservableObject {
     @Published var appConnectionState: MQTTAppConnectionState = .disconnected
-    @Published var historyText: String = ""
-    private var receivedMessage: String = ""
-
-    func setReceivedMessage(text: String) {
-        receivedMessage = text
-        historyText = historyText + "\n" + receivedMessage
-    }
-
-    func clearData() {
-        receivedMessage = ""
-        historyText = ""
-    }
 
     func setAppConnectionState(state: MQTTAppConnectionState) {
         appConnectionState = state
