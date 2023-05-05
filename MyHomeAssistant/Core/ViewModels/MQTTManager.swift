@@ -1,6 +1,6 @@
 //
 //  MQTTManager.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
@@ -99,6 +99,10 @@ final class MQTTManager: ObservableObject {
         return host
     }
     
+    func currentTopic() -> String? {
+        return topic
+    }
+    
     func isSubscribed() -> Bool {
        return currentAppState.appConnectionState.isSubscribed
     }
@@ -152,7 +156,6 @@ extension MQTTManager: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopics topics: [String]) {
         TRACE("topic: \(topics)")
         currentAppState.setAppConnectionState(state: .connectedUnSubscribed)
-        currentAppState.clearData()
     }
 
     func mqttDidPing(_ mqtt: CocoaMQTT) {
@@ -246,8 +249,7 @@ extension MQTTManager {
                         valeur = String(valeur.dropLast())
                     }
                 }
-                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/door/contact'") && message.contains("true")){
-                    currentAppState.setReceivedMessage(text: message)
+                if(sujet == "message" && valeur.contains("zigbee2mqtt") && valeur.contains("contact") && message.contains("true")){
                     currentSensorState.setsensorName(name: "mira/door")
                     currentSensorState.setSensorConnectionState(state: .detected)
                     postLogsRequest(text: message)
@@ -256,8 +258,7 @@ extension MQTTManager {
                         publishedOnce = true
                     }
                 }
-                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/motion/occupancy'") && message.contains("true")){
-                    currentAppState.setReceivedMessage(text: message)
+                if(sujet == "message" && valeur.contains("zigbee2mqtt") && valeur.contains("occupancy") && message.contains("true")){
                     currentSensorState.setsensorName(name: "mira/motion")
                     currentSensorState.setSensorConnectionState(state: .detected)
                     postLogsRequest(text: message)
@@ -266,8 +267,7 @@ extension MQTTManager {
                         publishedOnce = true
                     }
                 }
-                if((sujet == "message" && valeur == "MQTT publish topic 'zigbee2mqtt/mira/button/action'") && message.contains("single")){
-                    currentAppState.setReceivedMessage(text: message)
+                if(sujet == "message" && valeur.contains("zigbee2mqtt") && valeur.contains("action") && message.contains("single")){
                     currentSensorState.setsensorName(name: "mira/button")
                     currentSensorState.setSensorConnectionState(state: .detected)
                     postLogsRequest(text: message)

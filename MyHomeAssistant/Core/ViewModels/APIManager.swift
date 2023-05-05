@@ -1,6 +1,6 @@
 //
 //  APIManager.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 final class APIManager: ObservableObject {
-    @Published var currentAPIstate = APIAppState()
+    @Published var currentAPIState = APIAppState()
     @Published var currentSensorState = SensorAppState()
     
     func getUsersRequest(usager: String, motDePasse: String) {
@@ -48,14 +48,13 @@ final class APIManager: ObservableObject {
                 // Access the single Person object in the array
                 people.forEach { user in
                     if(usager == user.mail && motDePasse == String(user.password)){
-                        currentAPIstate.setBrokerAdress(address: user.broker)
-                        currentAPIstate.setIdentifierName(name: user.mail)
-                        currentAPIstate.setUserCode(code: user.code)
-                        currentAPIstate.setUserValideState(state: true)
+                        currentAPIState.setIdentifierName(name: user.mail)
+                        currentAPIState.setUserCode(code: user.code)
+                        currentAPIState.setUserValideState(state: true)
                     }
                 }
-                if(currentAPIstate.userValideState != true){
-                    currentAPIstate.setUserValideState(state: false)
+                if(currentAPIState.userValideState != true){
+                    currentAPIState.setUserValideState(state: false)
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
