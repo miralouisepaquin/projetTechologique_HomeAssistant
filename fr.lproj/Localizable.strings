@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  MySchoolAssistant
+
+  Created by EdwImac03 on 2023-05-04.
+  
+*/
+"Enter Email" = "Entrez votre courriel";
+"Enter Password" = "Entrez votre password";
+"LogIn" = "Connexion";
+"Wrong email and/or password!" = "Courriel ou mot de passe invalide!";
+"Language" = "Langue";
+"Alarm" = "Alarme";
+"Settings" = "Paramètres";
+"Enter broker Address" = "Entrez l'adresse du broker";
+"Connect" = "Connexion";
+"Disconnect" = "Déconnexion";
+"Enter a topic to subscribe" = "Entrez le Topic";
+"Subscribe" = "Inscription";
+"Unsubscribe" = "Désinscription";
+"Connected" = "Connecté";
+"Disconnected" = "Déconnecté";
+"Connecting" = "Connexion";
+"Subscribed" = "Inscrit";
+"Connected Unsubscribed" = "Connecté et Non Inscrit";
