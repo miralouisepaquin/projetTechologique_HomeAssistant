@@ -2,9 +2,14 @@
 application en swift 5 avec Xcode 14 qui va simuler un système de gestion d'alarme de maison.
 
 ## Table of Contents
-1. [General Info](#general-info)
-2. [Technologies](#technologies)
-3. [Installation](#installation)
+1. [Last Update](#last-update)
+2. [General Info](#general-info)
+3. [Technologies](#technologies)
+4. [Installation](#installation)
+
+### Last Updates
+***
+V4.1 Ajout de la gestion des langues grâce à un menu déroulant dans la page des settings.
 ### General Info
 ***
 Le système utilise la technologie MQTT afin de recevoir et transmettre les informations provenant de l'application et des senseurs. L'application utilise un API Rest sur un serveur distant avec une base de donnée en MongoDB. Les senseurs quand à eux utilisent du language Zigbee pour communiquer avec le Broker.
