@@ -94,7 +94,7 @@ struct SettingsView: View {
     private func setUpSubscribeButton() -> some View  {
         return Button(action: functionFor(state: mqttManager.currentAppState.appConnectionState)) {
             Text(titleForSubscribButtonFrom(state: mqttManager.currentAppState.appConnectionState))
-                .font(.system(size: 14.0))
+                .font(.system(size: 12.0))
         }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
             .frame(width: 100)
             .disabled(!mqttManager.isConnected() || topic.isEmpty)
