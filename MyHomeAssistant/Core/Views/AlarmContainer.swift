@@ -2,7 +2,7 @@
 //  AlarmContainer.swift
 //  MySchoolAssistant
 //
-//  Created by EdwImac03 on 2023-04-20.
+//  Created by Mira Paquin on 2023-04-20.
 //
 
 import SwiftUI
@@ -17,7 +17,7 @@ struct AlarmContainer: View {
                 .foregroundColor(.white)
                 .padding(10)
         }.frame(maxWidth: .infinity)
-        .background(isDetected ? Color.red : Color.green)
+        .background(isDetected ? Color.red : Color.teal)
     }
 }
 

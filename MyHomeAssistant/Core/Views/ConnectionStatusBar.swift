@@ -1,6 +1,6 @@
 //
 //  ConnectionStatusBar.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
@@ -12,7 +12,7 @@ struct ConnectionStatusBar: View {
     var isConnected: Bool
     var body: some View {
         HStack {
-            Text(message)
+            Text(message.localized)
                 .font(.footnote)
                 .foregroundColor(.white)
         }.frame(maxWidth: .infinity)
@@ -23,6 +23,6 @@ struct ConnectionStatusBar: View {
 
 struct ConnectionStatusBar_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectionStatusBar(message: "Hello", isConnected: true)
+        ConnectionStatusBar(message: "Hello".localized, isConnected: true)
     }
 }
