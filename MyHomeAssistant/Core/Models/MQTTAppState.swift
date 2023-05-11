@@ -1,6 +1,6 @@
 //
 //  MQTTAppStates.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
@@ -18,16 +18,17 @@ enum MQTTAppConnectionState {
     var description: String {
         switch self {
         case .connected:
-            return "Connected"
+            return "Connected".localized
         case .disconnected:
-            return "Disconnected"
+            return "Disconnected".localized
         case .connecting:
-            return "Connecting"
+            return "Connecting".localized
         case .connectedSubscribed:
-            return "Subscribed"
+            return "Subscribed".localized
         case .connectedUnSubscribed:
-            return "Connected Unsubscribed"
+            return "Connected Unsubscribed".localized
         }
+        
     }
     var isConnected: Bool {
         switch self {
@@ -50,18 +51,6 @@ enum MQTTAppConnectionState {
 
 final class MQTTAppState: ObservableObject {
     @Published var appConnectionState: MQTTAppConnectionState = .disconnected
-    @Published var historyText: String = ""
-    private var receivedMessage: String = ""
-
-    func setReceivedMessage(text: String) {
-        receivedMessage = text
-        historyText = historyText + "\n" + receivedMessage
-    }
-
-    func clearData() {
-        receivedMessage = ""
-        historyText = ""
-    }
 
     func setAppConnectionState(state: MQTTAppConnectionState) {
         appConnectionState = state

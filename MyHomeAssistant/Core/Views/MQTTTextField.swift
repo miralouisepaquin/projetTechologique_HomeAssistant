@@ -1,6 +1,6 @@
 //
 //  MQTTTextField.swift
-//  MyHomeAssistant
+//  MySchoolAssistant
 //
 //  Created by Mira-Louise Paquin on 2023-03-16.
 //
@@ -12,7 +12,7 @@ struct MQTTTextField: View {
     var isDisabled: Bool
     @Binding var message: String
     var body: some View {
-        TextField(placeHolderMessage, text: $message)
+        TextField(placeHolderMessage.localized, text: $message)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .font(.body)
             .disableAutocorrection(true)
@@ -23,6 +23,6 @@ struct MQTTTextField: View {
 
 struct MQTTTextField_Previews: PreviewProvider {
     static var previews: some View {
-        MQTTTextField(placeHolderMessage: "Hello", isDisabled: true, message: .constant("hello"))
+        MQTTTextField(placeHolderMessage: "Hello".localized, isDisabled: true, message: .constant("hello"))
     }
 }

@@ -39,7 +39,7 @@ struct AlarmView: View {
 
             Spacer()
         }
-        .navigationTitle("Alarm")
+        .navigationTitle("Alarm".localized)
         .navigationBarItems(trailing: NavigationLink(
             destination: SettingsView(brokerAddress: mqttManager.currentHost() ?? "",topic: mqttManager.currentTopic() ?? ""),
             label: {
@@ -49,6 +49,8 @@ struct AlarmView: View {
         .onAppear {
             apiManager.currentSensorState.clearSensorList()
             apiManager.getSensorsRequest()
+            UserDefaults.standard.string(forKey: "local")
+            UserDefaults.standard.synchronize()
         }
     }
 }
